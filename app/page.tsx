@@ -7,20 +7,26 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
+import Image from "next/image";
+import logo from "../public/logo.png";
 
 export default function Home() {
+  const logoStyle = {};
+
   return (
     <div>
-      <Row className="justify-content-center">
-        <Col xs="auto" className="p-5 m-5">
-          <h1>WalkWay</h1>
-        </Col>
-      </Row>
-      <Row className="justify-content-center">
-        <Col xs="auto">
-          <App />
-        </Col>
-      </Row>
+      <Container>
+        <Row className="justify-content-center">
+          <Col xs="auto">
+            <Image src={logo} alt="Walkway Logo" height={250} width={250} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <App />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
