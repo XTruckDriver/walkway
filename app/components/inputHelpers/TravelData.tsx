@@ -4,10 +4,10 @@ import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 
 interface JourneyProps {
-  distance: number;
+  distance: number | null;
   steps: number;
   calories: number;
-  time: number;
+  time: string | null;
 }
 
 interface JourneyData {
@@ -57,7 +57,10 @@ const TravelData: React.FC<JourneyData> = ({ journeyData }) => {
               Distance {metric && <>(km)</>}
               {standard && <>(mi)</>}
             </td>
-            <td>{journeyData.distance}</td>
+            <td>
+              {metric && journeyData.distance}
+              {standard && (journeyData.distance * 0.621371).toFixed(1)}
+            </td>
           </tr>
           <tr>
             <td>Steps</td>
