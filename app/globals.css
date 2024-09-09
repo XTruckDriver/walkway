@@ -4,10 +4,14 @@
 
 .searchBtn {
   margin-top: 10px;
-  width: 200px;
+  width: 150px;
 }
 
 .map-container {
   height: 75vh;
   width: 75vw;
+}
+
+.routes {
+  width: 300px;
 }

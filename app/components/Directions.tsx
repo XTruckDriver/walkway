@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
-import Button from "react-bootstrap/Button";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import TravelData from "./inputHelpers/TravelData";
 
 interface DirectionsProps {
@@ -64,30 +65,41 @@ const Directions: React.FC<DirectionsProps> = ({ start, finish }) => {
   console.log(`Directions: steps =${steps} calories =${calories}`);
 
   return (
-    <div className="directions">
-      <h3>Routes</h3>
-      <div className="d-grid gap-2">
-        {routes.map((route, index) => (
-          <Button
-            onClick={() => setRouteIndex(index)}
-            key={route.summary}
-            variant="primary"
-            size="lg"
-          >
-            {route.summary}
-          </Button>
-        ))}
-      </div>
+    <>
+      <div className="directions">
+        <h4>Routes</h4>
 
-      <TravelData
-        journeyData={{
-          distance: distanceKM.toFixed(1),
-          steps: Math.round(steps),
-          calories: Math.round(calories),
-          time: selected.legs[0].duration?.text,
-        }}
-      />
-    </div>
+        <ToggleButtonGroup
+          defaultValue={0}
+          className="routes mt-2 mb-1"
+          type="radio"
+          name="routes"
+          vertical={true}
+        >
+          {routes.map((route, index) => (
+            <ToggleButton
+              variant="outline-primary"
+              value={index}
+              key={index}
+              id={`tbg-radio-${index}`}
+              onClick={() => setRouteIndex(index)}
+            >
+              {route.summary}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+
+        <TravelData
+          journeyData={{
+            distance: distanceKM.toFixed(1),
+            steps: Math.round(steps),
+            calories: Math.round(calories),
+            time: selected.legs[0].duration?.text,
+          }}
+          
+        />
+      </div>
+    </>
   );
 };
 export default Directions;

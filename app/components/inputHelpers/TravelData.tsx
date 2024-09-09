@@ -31,8 +31,9 @@ const TravelData: React.FC<JourneyData> = ({ journeyData }) => {
   return (
     <>
       <Form>
-        <div className="mb-3">
+        <div className="mb-3 mt-3">
           <Form.Check
+            inline
             type="radio"
             id="metric"
             label="Metric"
@@ -41,6 +42,7 @@ const TravelData: React.FC<JourneyData> = ({ journeyData }) => {
           />
 
           <Form.Check
+            inline
             type="radio"
             label="Standard"
             id="standard"
@@ -50,7 +52,9 @@ const TravelData: React.FC<JourneyData> = ({ journeyData }) => {
         </div>
       </Form>
       <Table striped bordered hover style={{ width: "300px" }}>
-        <thead>Your Journey:</thead>
+        <thead>
+          <strong>Your Journey:</strong>
+        </thead>
         <tbody>
           <tr>
             <td>

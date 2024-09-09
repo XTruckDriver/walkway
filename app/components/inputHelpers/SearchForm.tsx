@@ -60,7 +60,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setStart, setFinish }) => {
         className="searchBtn"
         type="submit"
         variant="outline-success"
-        style={{ marginBottom: "50px " }}
+        style={{ marginBottom: "40px " }}
       >
         Go
       </Button>

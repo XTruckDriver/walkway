@@ -12,7 +12,7 @@ interface JourneyData {
   distance: number;
   steps: number;
   calories: number;
-  time: number;
+  time: string;
 }
 
 const Input: React.FC<InputProps> = ({ setStart, setFinish }) => {
