@@ -18,7 +18,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ setStart, setFinish }) => {
       setFormIncomplete(true);
       return;
     }
-    console.log(`SearchForm: pointA = ${pointA} pointB = ${pointB}`);
     setFormIncomplete(false);
     setStart(pointA);
     setFinish(pointB);
@@ -50,7 +49,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setStart, setFinish }) => {
           placeholder="Enter destination"
           value={pointB}
           onChange={handlePointBChange}
-          style={{ marginTop: "16px" }}
+          style={{ marginTop: "8px" }}
         />
       </div>
       {formIncomplete && (
@@ -60,7 +59,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setStart, setFinish }) => {
         className="searchBtn"
         type="submit"
         variant="outline-success"
-        style={{ marginBottom: "40px " }}
+        style={{ marginBottom: "20px " }}
       >
         Go
       </Button>

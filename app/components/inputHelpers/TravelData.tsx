@@ -4,10 +4,10 @@ import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 
 interface JourneyProps {
-  distance: number | null;
+  distance: number;
   steps: number;
   calories: number;
-  time: string | null;
+  time: string;
 }
 
 interface JourneyData {
@@ -29,9 +29,12 @@ const TravelData: React.FC<JourneyData> = ({ journeyData }) => {
   };
 
   return (
-    <>
+    <div className="mt-4">
       <Form>
-        <div className="mb-3 mt-3">
+        <div className="mb-1 mt-2">
+          <h5>
+            <strong>Your Journey:</strong>
+          </h5>
           <Form.Check
             inline
             type="radio"
@@ -52,9 +55,6 @@ const TravelData: React.FC<JourneyData> = ({ journeyData }) => {
         </div>
       </Form>
       <Table striped bordered hover style={{ width: "300px" }}>
-        <thead>
-          <strong>Your Journey:</strong>
-        </thead>
         <tbody>
           <tr>
             <td>
@@ -62,17 +62,23 @@ const TravelData: React.FC<JourneyData> = ({ journeyData }) => {
               {standard && <>(mi)</>}
             </td>
             <td>
-              {metric && journeyData.distance}
-              {standard && (journeyData.distance * 0.621371).toFixed(1)}
+              {metric &&
+                journeyData.distance.toLocaleString(undefined, {
+                  maximumFractionDigits: 1,
+                })}
+              {standard &&
+                (journeyData.distance * 0.621371).toLocaleString(undefined, {
+                  maximumFractionDigits: 1,
+                })}
             </td>
           </tr>
           <tr>
             <td>Steps</td>
-            <td>{journeyData.steps}</td>
+            <td>{journeyData.steps.toLocaleString()}</td>
           </tr>
           <tr>
             <td>Calories</td>
-            <td>{journeyData.calories}</td>
+            <td>{journeyData.calories.toLocaleString()}</td>
           </tr>
           <tr>
             <td>Time</td>
@@ -80,7 +86,7 @@ const TravelData: React.FC<JourneyData> = ({ journeyData }) => {
           </tr>
         </tbody>
       </Table>
-    </>
+    </div>
   );
 };
 

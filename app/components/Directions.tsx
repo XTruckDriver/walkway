@@ -52,26 +52,24 @@ const Directions: React.FC<DirectionsProps> = ({ start, finish }) => {
 
   if (!leg) return null;
 
-  //console.log(`Directions: start = ${start} finish = ${finish}`);
-  console.log(`leg = ${selected.legs[0].duration?.value}`);
-  console.log("selected : ", selected);
-
   const strideLengthMeters: number = 0.76;
-  const distanceMeters: number = selected.legs[0].distance?.value;
-  const distanceKM: number = distanceMeters / 1000;
-  const steps: number = distanceMeters / strideLengthMeters;
+  const distanceMeters: number | undefined = selected.legs[0].distance?.value;
+  const distanceKM: number = distanceMeters ? distanceMeters / 1000 : 0;
+  const steps: number = distanceMeters
+    ? distanceMeters / strideLengthMeters
+    : 0;
   const calories: number = distanceKM * 40;
-
-  console.log(`Directions: steps =${steps} calories =${calories}`);
 
   return (
     <>
       <div className="directions">
-        <h4>Routes</h4>
+        <h5>
+          <strong>Routes:</strong>
+        </h5>
 
         <ToggleButtonGroup
           defaultValue={0}
-          className="routes mt-2 mb-1"
+          className="routes mt-1 mb-1"
           type="radio"
           name="routes"
           vertical={true}
@@ -91,12 +89,11 @@ const Directions: React.FC<DirectionsProps> = ({ start, finish }) => {
 
         <TravelData
           journeyData={{
-            distance: distanceKM.toFixed(1),
+            distance: distanceKM,
             steps: Math.round(steps),
             calories: Math.round(calories),
-            time: selected.legs[0].duration?.text,
+            time: selected.legs[0].duration?.text || "Unknown",
           }}
-          
         />
       </div>
     </>
