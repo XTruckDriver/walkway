@@ -12,26 +12,11 @@ interface JourneyData {
   distance: number;
   steps: number;
   calories: number;
-  time: number;
+  time: string;
 }
 
 const Input: React.FC<InputProps> = ({ setStart, setFinish }) => {
   const [journeyData, setJourneyData] = useState<JourneyData | null>(null);
-
-  // const handleFormSubmit = (startingCity: string, destination: string) => {
-  //   const journey: JourneyData = {
-  //     distance: 1,
-  //     steps: 2,
-  //     calories: 3,
-  //     time: 4,
-  //   };
-  //   setJourneyData(journey);
-  //   // setStartInput(startingCity);
-  //   // setFinishInput(destination);
-  //   console.log(
-  //     `${startingCity} -> ${destination} Click inside of Input component`
-  //   );
-  // };
 
   return (
     <div className="col-md-4">

@@ -18,8 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 WalkWay
 
-
-WalkWay is an app designed to give extra motivation and direction to travel by foot. It provides the estimated time, steps, calories, and distance it takes to walk from city to city. It has a secondary feature that recommends nearby locations (e.g. bakeries, coffeeshops) and how many calories you have to "spend" once you get there.
+WalkWay is an app designed to give extra motivation and direction to travel by foot. It provides the estimated time, steps, calories, and distance it takes to walk from city to city.
 
 npm run dev Runs the development server on http://localhost:3000/ if available.
 

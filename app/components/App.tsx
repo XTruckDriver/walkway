@@ -6,14 +6,10 @@ import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import { SplitLayout } from "@googlemaps/extended-component-library/react";
 import Input from "./Input";
 import Directions from "./Directions";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 const App: React.FC = () => {
   const [start, setStart] = useState("");
   const [finish, setFinish] = useState("");
-
-  console.log(`App: start = ${start} finish = ${finish}`);
 
   return (
     <>

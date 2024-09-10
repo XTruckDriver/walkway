@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import TravelData from "./inputHelpers/TravelData";
 
 interface DirectionsProps {
   start: string;
@@ -49,28 +52,51 @@ const Directions: React.FC<DirectionsProps> = ({ start, finish }) => {
 
   if (!leg) return null;
 
-  console.log(`Directions: start = ${start} finish = ${finish}`);
-  console.log(leg);
+  const strideLengthMeters: number = 0.76;
+  const distanceMeters: number | undefined = selected.legs[0].distance?.value;
+  const distanceKM: number = distanceMeters ? distanceMeters / 1000 : 0;
+  const steps: number = distanceMeters
+    ? distanceMeters / strideLengthMeters
+    : 0;
+  const calories: number = distanceKM * 40;
 
   return (
-    <div className="directions">
-      <h3>Routes</h3>
-      <ul>
-        {routes.map((route, index) => (
-          <li key={route.summary}>
-            <button onClick={() => setRouteIndex(index)}>
+    <>
+      <div className="directions">
+        <h5>
+          <strong>Routes:</strong>
+        </h5>
+
+        <ToggleButtonGroup
+          defaultValue={0}
+          className="routes mt-1 mb-1"
+          type="radio"
+          name="routes"
+          vertical={true}
+        >
+          {routes.map((route, index) => (
+            <ToggleButton
+              variant="outline-primary"
+              value={index}
+              key={index}
+              id={`tbg-radio-${index}`}
+              onClick={() => setRouteIndex(index)}
+            >
               {route.summary}
-            </button>
-          </li>
-        ))}
-      </ul>
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
 
-      <h3>{selected.summary}</h3>
-
-      <p>Steps: Calculate Here</p>
-      <p>Distance: {leg.distance?.text}</p>
-      <p>Duration: {leg.duration?.text}</p>
-    </div>
+        <TravelData
+          journeyData={{
+            distance: distanceKM,
+            steps: Math.round(steps),
+            calories: Math.round(calories),
+            time: selected.legs[0].duration?.text || "Unknown",
+          }}
+        />
+      </div>
+    </>
   );
 };
 export default Directions;
